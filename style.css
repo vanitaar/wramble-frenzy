@@ -1,0 +1,177 @@
+:root {
+    background-color:#083836;
+}
+
+header {
+    /* background: linear-gradient( rgb(32, 58, 67), rgb(44, 83, 100));
+    background: -webkit-linear-gradient(rgb(32, 58, 67), rgb(44, 83, 100));
+    background: -moz-linear-gradient(rgb(rgb(32, 58, 67), rgb(44, 83, 100))); */
+    color: #e2ded3;
+    background-color: rgb(93, 93, 90, 0.5);
+    padding: 0.5rem;
+    border: 5px dotted #f9ff21;
+    font-family: "Tilt Prism", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "XROT" 0,
+    "YROT" 0;
+    font-size: 2rem;
+    }
+
+
+
+.main {
+    text-align: center;
+    font-family: "Handlee", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.start-page p {
+    padding-top: 1rem;
+    color: #fff5f5;
+}
+
+.wrapper {
+    color: #fff5f5;
+    margin: 0 auto;
+    padding-top: 0.5rem;
+  
+}
+.decks-all {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  
+.deck {
+    box-shadow: 6px 6px 10px #facf5a;
+    padding: 2rem;
+    border-radius: 10px;
+  }
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+.game-page {
+    width: 450px;
+    background-color: rgb(93, 93, 90, 0.5);
+    border-radius: 10px;
+    border: 1px solid #21e6c1;
+    color: #fff5f5;
+    font-size: 1.2rem;
+  }
+
+  .game-page  .timer {
+    text-align: right;
+    margin-right: 10px;
+  }
+
+.game-page h2 {
+    text-decoration: underline #482ff7;
+    text-decoration-thickness: 10px ;
+    text-decoration-skip-ink: none;
+    text-underline-offset: -5px;
+    border-bottom: 2px solid rgb(33, 230, 193, 0.3);
+    padding-bottom: 1rem;
+}
+
+.game-page .word {
+    font-family: "Courgette", cursive;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 1.5rem;
+    text-transform: lowercase;
+    letter-spacing: 20px;
+    margin-right: -20px;
+}
+
+.content input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #abf5eff1;
+}
+
+.hint {
+    margin-bottom: 0.5rem;
+}
+
+.show-hint-btn {
+    font-size: 1.2rem ;
+    padding: 5px;
+    font-family: "Handlee", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #ff6d24; 
+    background-color: #ececec00;
+    border: 1px solid #ff6d24;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.hint-text {
+    font-size: 1.1rem;
+    display: none;
+}
+
+.buttons .submit-word, .buttons .swap-word {
+    font-size: 1.5rem ;
+    padding: 5px 15px 5px 15px;
+    margin-top: 10px;
+    font-family: "Handlee", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #ddf516;
+    background-color: #ececec00;
+    border: 1px solid #ddf516;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.results {
+    /* visibility: hidden; */
+    width:auto;
+    font-weight: 600;
+}
+
+.results .return-start-btn {
+    font-size: 1.2rem;
+    font-family: "Handlee", cursive;
+    font-weight: 600;
+    font-style: normal;
+    color: #884939; 
+    background-color: #ecececa0;
+    border: 1px solid #884939;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+} 
+
+footer {
+    color: #e2ded3;
+    background-color: rgb(93, 93, 90, 0.5);
+    padding: 0.5rem;
+    border: 3px dotted #f9ff21;
+    margin-top: 2rem;
+
+}
+
+footer .quote {
+    font-family: "Satisfy", cursive;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.5rem;
+    text-decoration: underline #482ff7;
+    text-decoration-thickness: 10px ;
+    text-decoration-skip-ink: none;
+    text-underline-offset: -5px;
+}

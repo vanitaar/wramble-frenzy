@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wramble - Word Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Handlee&family=Satisfy&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        
+        <header class="title-banner">
+            <h1>Wramble Frenzy</h1>
+        </header>
+
+        <div class="start-page" style="display: none;">
+            <p>Welcome to Wramble Frenzy, the ultimate test of your word unscrambling skills! 
+            In this game, you'll dive into the world of jumbled letters and test your vocabulary knowledge.
+            </p>
+            <p> The g oal is simple - unscramble to mixed-up letters to form real words within the set time. 
+                Fear not, click the hint or refresh the word if you get stuck. Each deck has 10 jumbled words.
+                <br> Are you ready to display your linguistic prowess?
+            </p>
+
+    <!--Topic Choices => in grid/flex-->
+
+    <div class="wrapper">
+            <h3>Pick a Deck to Start:</h3>
+
+            <div class="decks-all">
+                <div class="deck">
+                    <h4>topic 1</h4>
+                </div>
+                <div class="deck">
+                    <h4>topic 2</h4>
+                </div>
+                <div class="deck">
+                    <h4>topic 3</h4>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="container">
+        <div class="game-page">
+            <h2>Topic 1</h2>
+            <p class="timer"><i>Time Left: </i><span><b>30</b> s</span></p>
+            <div class="content">
+                <p class="word">hodilnp</p>
+                <input type="text" placeholder="type your answer here" id="answer">
+                <div class="details">
+                    <div class="hint"> 
+                        <button class="show-hint-btn">💡</button>
+                        <span class="hint-text">Hint: mammal in the ocean</span>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="swap-word">swap</button>
+                        <button class="submit-word">next</button>
+                    </div>
+                </div>
+                <div class="results">
+                    <p class="result-text">Congrats!...</p>
+                    <button class="return-start-btn">Try another deck</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <p><span class="quote">"Don't gobblefunk around with words!"</span> ~ Roald Dahl</p>
+            <p>created with ❤️ by thebookishcoder</p>
+        </div>
+       
+    </footer>
+
+    </div>
+
+
+</body>
+</html>
