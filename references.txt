@@ -2,3 +2,46 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
 --> event.target vs event.currentTarget
+
+https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/
+--> to read and figure out later
+
+//import AND export btw 2 js files to access variables
+https://javascript.info/import-export
+https://youtu.be/g7gmL4Fadno
+https://www.youtube.com/watch?v=NSnckA3LyGw
+
+
+//scrambling words
+https://stackoverflow.com/questions/42334640/creating-a-javascript-string-word-scrambler#:~:text=First%20you%20get%20the%20text,back%20into%20the%20text%20area.
+https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
+https://stackabuse.com/shuffling-arrays-in-javascript/
+e.g.
+function fisherYatesShuffle(array) {
+    let currentIndex = array.length;
+    while (currentIndex !== 0) {
+        // Pick a remaining element
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element
+        let temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+}
+
+let arr = [1, 2, 3, 4, 5];
+console.log(fisherYatesShuffle(arr)); // [ 3, 1, 5, 4, 2 ]
+-----------------
+function durstenfeldShuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(durstenfeldShuffle(arr));

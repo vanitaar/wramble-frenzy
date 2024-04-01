@@ -1,7 +1,8 @@
 // Define an array of topics, each with its own word list and hints
-const topics = [
+// words all in lowercase
+export const topics = [
     {
-      topic: 'In the sky and beyond',
+      topicName: 'In the sky and beyond',
       wordsAndHints: {
         aeroplane: 'mode of transportation',
         satellite: 'orbiting object for survelleince/communication',
@@ -17,7 +18,7 @@ const topics = [
       }
     },
     {
-      topic: 'Sink, swim or float',
+      topicName: 'Sink, swim or float',
       wordsAndHints: {
         titanic: 'famous ship that sank, more than a century ago after hitting an iceberg',
         submarine: 'watercraft designed to operate underwater',
@@ -34,6 +35,7 @@ const topics = [
     // Add more topics as needed
   ];
   
+
   // Randomly select a topic from the array
   const randomTopic = topics[Math.floor(Math.random() * topics.length)];
   
@@ -47,7 +49,7 @@ const topics = [
   const randomHint = randomTopic.wordsAndHints[randomWord];
   
   // Display the selected topic, word, and hint
-  console.log('Topic:', randomTopic.topic);
+  console.log('Topic:', randomTopic.topicName);
   console.log('Word:', randomWord);
   console.log('Hint:', randomHint);
   
