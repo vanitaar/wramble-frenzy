@@ -1,7 +1,7 @@
 // Define an array of topics, each with its own word list and hints
 const topics = [
     {
-      topic: 'High in the sky and beyond',
+      topic: 'In the sky and beyond',
       wordsAndHints: {
         aeroplane: 'mode of transportation',
         satellite: 'orbiting object for survelleince/communication',

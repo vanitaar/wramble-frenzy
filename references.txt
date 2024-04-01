@@ -1,0 +1,4 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+
+https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
+--> event.target vs event.currentTarget
