@@ -65,3 +65,17 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
 https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 https://stackoverflow.com/questions/47785624/filter-and-includes-to-filter-array-with-array
+
+
+//using spread syntax --> to ensure original array unchanged after splice 
+test code:
+let fruits = ['apple', 'banana', 'cherry', 'date'];
+fruits.splice(2, 1); //remove cherry
+console.log(fruits) //array mutated
+
+let fruits2 = ['apple', 'banana', 'cherry', 'date'];
+console.log('initial ' + fruits2)
+let originalFruits2 = [...fruits2];
+fruits2.splice(2, 1);
+console.log('mutated ' + fruits2);
+console.log('remain unchanged ' + originalFruits2)

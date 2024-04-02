@@ -22,9 +22,14 @@ const nextBtn = document.querySelector('.submit-word');
 //global variables
 let deckIndex = -1; //initialize initial state i.e. no deck selected until deck is clicked and goGamePage called
 let correctWord = ''; //initialize empty str
+
 let wordsArray = []; //initialize array to store words from selected topic
+// let originalWordsArray = [...wordsArray]; //copy of wordsArray using spread syntax - unmutable //for splice
+
 let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
+let usedIndex = [];
 let remainingWords = []; //initialize array to store and track UNused words
+
 let score = 0; //initialize num value
 
 //---------------------------------FUNCTIONS----------------------------------------------------
@@ -34,11 +39,24 @@ function getRandomUnusedWord() {
     if (remainingWords.length === 0) {
         console.log('All words used up! End game, display results');
     }
+
+    let randomIndex;
+    let randomWord;
     
-    let randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)]; //pick a random word from list //console.log(randomWord)
-    usedWords.push(randomWord); //the randomly picked word => used
-    remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
-    return randomWord //to be used in goGamePage fn
+    do {
+        randomIndex = Math.floor(Math.random() * wordsArray.length)
+        randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
+
+        if (!usedWords.includes(randomWord)) { 
+            
+            usedIndex.push(randomIndex); // index of the randomly picked word => used
+            usedWords.push(randomWord); //randomly picked word => used
+            remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
+        }
+        
+    } while (usedIndex.length < wordsArray.length && usedIndex.every(num => {num !== randomIndex}) );
+
+    return randomWord // the unused random word to be used in goGamePage fn
 }
 
 function jumbleLetters(word) {
@@ -78,7 +96,7 @@ function goStartPage(){
     gamePage.style.display = 'none';
     startPage.style.display = 'block';
     // Reset used and remaining words array and score!
-    usedWords = [];
+    usedIndex = [];
     remainingWords = wordsArray;
     score = 0;
 }
@@ -161,6 +179,10 @@ nextBtn.addEventListener('click', getInput);
 
 //!!! important each word appear once --> i.e. need to keep track of unused/used words
 
+
 //click swap --> to try another word and return to it later OR skip word means no point
 
 ///sudden thought what if jumbled letters end up being same as actual word?? --> need to add a check
+
+
+
