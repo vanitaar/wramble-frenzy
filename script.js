@@ -14,23 +14,37 @@ const showHintBtn = document.querySelector('.show-hint-btn'); //console.log(show
 const hint = document.querySelector('.hint-text');
 const input = document.querySelector('input');
 
-let correctWord = ''; //initialize in global scope
-
 //buttons on gamePage
 const returnToStartBtn = document.querySelector('.return-start-btn');
-const swapBtn = document.querySelector('.swap-word');
+// const swapBtn = document.querySelector('.swap-word');
 const nextBtn = document.querySelector('.submit-word');
 
+//global variables
+let deckIndex = -1; //initialize initial state i.e. no deck selected until deck is clicked and goGamePage called
+let correctWord = ''; //initialize empty str
+let wordsArray = []; //initialize array to store words from selected topic
+let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
+let remainingWords = []; //initialize array to store and track UNused words
+let score = 0; //initialize num value
+
 //---------------------------------FUNCTIONS----------------------------------------------------
-function goStartPage(){
-    gamePage.style.display = 'none';
-    startPage.style.display = 'block';
+function getRandomUnusedWord() {
+    //filter out used words (which are stored in the usedWords array)
+    remainingWords = wordsArray.filter(word => !usedWords.includes(word)); //modify global!
+    if (remainingWords.length === 0) {
+        console.log('All words used up! End game, display results');
+    }
+    
+    let randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)]; //pick a random word from list //console.log(randomWord)
+    usedWords.push(randomWord); //the randomly picked word => used
+    remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
+    return randomWord //to be used in goGamePage fn
 }
 
 function jumbleLetters(word) {
     //convert the word to an array with all letters
     let letters = word.split('');
-    //using a shuffle algorithm (see references), to iterate through each lettter and randomly swap them around only once
+    //using a shuffle algorithm (see references), to iterate through each lettter and randomly swap them around
     for (let i = letters.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [letters[i], letters[j]] = [letters[j], letters[i]];
@@ -40,27 +54,34 @@ function jumbleLetters(word) {
 
 function goGamePage(event){
     // console.log(event);
-    const deckIndex = Array.from(allDecks).indexOf(event.currentTarget); //currentTarget will target parent always
+    deckIndex = Array.from(allDecks).indexOf(event.currentTarget); //currentTarget will target parent always
     startPage.style.display = 'none';
     gamePage.style.display = 'flex';
     gameTopicHeader.innerText = allDecks[deckIndex].children[0].innerText; //display apt topic
 
-    let wordsArray = []; //initialize array
-    let jumbledWord = ''; //initialize string
+    let jumbledWord = ''; //initialize string locally
+
     topics.forEach(topic => {
         if (topic.topicName === allDecks[deckIndex].children[0].innerText) { 
         wordsArray = Object.keys(topic.wordsAndHints); //chache all words from chosen topic into an array
-        let randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)] //pick a random word from list //console.log(randomWord)
-        jumbledWord = jumbleLetters(randomWord); //use function to jumble letters
-        displayedWord.innerText = jumbledWord; //display jumbled word //console.log(jumbledWord)
-    
-        hint.innerText = topic.wordsAndHints[randomWord] //display associated hint
+        let currentRandomWord = getRandomUnusedWord(); //get random unused word and track used words
 
-        correctWord = randomWord;  //console.log('CORRECT: ' + correctWord)
+        jumbledWord = jumbleLetters(currentRandomWord); //use function to jumble letters
+        displayedWord.innerText = jumbledWord; //display jumbled word //console.log(jumbledWord)
+        hint.innerText = topic.wordsAndHints[currentRandomWord] //display associated hint
+        return correctWord = currentRandomWord;  //console.log('CORRECT: ' + correctWord)
         } 
     });
 }
 
+function goStartPage(){
+    gamePage.style.display = 'none';
+    startPage.style.display = 'block';
+    // Reset used and remaining words array and score!
+    usedWords = [];
+    remainingWords = wordsArray;
+    score = 0;
+}
 
 //-----------------------------EVENT LISTENERS------------------------------------------------------
 
@@ -84,7 +105,26 @@ input.addEventListener('click', focus())
 // swapBtn.addEventListener('click')
 
 //next button
+const getInput = () => {
+    let playerInput = input.value.toLocaleLowerCase();//obtaining player input //console.log(playerInput);
 
+    if (playerInput === '') {
+        input.placeholder = 'type to click next';
+        input.style.border = '2px solid #ff006c';
+    } else if (playerInput === correctWord) {
+        score++; //+1 for correct answer // console.log('answer correct' + 'score: ' + score)
+
+    } //player got it wrong --> no point added 
+      //correct or wrong --> move on to next --> try all 10 words
+ 
+    input.value = ''; //clear input field
+    correctWord = getRandomUnusedWord(); //generate next word
+    displayedWord.innerText = jumbleLetters(correctWord); //display jumbled word 
+    hint.innerText = topics[deckIndex].wordsAndHints[correctWord] //get associated hint
+    hint.style.display = 'none'; //initially hint not displayed until clicked
+    console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
+}
+nextBtn.addEventListener('click', getInput);
 
 //workings-----------------------------------------------------------------------------------
 
@@ -114,24 +154,13 @@ input.addEventListener('click', focus())
 
 // console.log(randomWord + ': ' + topics[1].wordsAndHints[randomWord]) //get hint associated with the displayed random word
 
-
-const getInput = () => {
-    let playerInput = input.value.toLocaleLowerCase();//obtaining player input //console.log(playerInput);
-
-    if (playerInput === '') {
-        input.placeholder = 'type to click next';
-        input.style.border = '2px solid #ff006c';
-    } elseif (playerInput === correctWord) {
-        
-    } elseif () {
-
-    }
-}
-nextBtn.addEventListener('click', getInput);
-
 //click next --> check word 
         // cannot be blank --> "type in your answer to click next"
         //if correct --> add to score and next word
         //if wrong --> x point and next word 
 
+//!!! important each word appear once --> i.e. need to keep track of unused/used words
+
 //click swap --> to try another word and return to it later OR skip word means no point
+
+///sudden thought what if jumbled letters end up being same as actual word?? --> need to add a check

@@ -7,7 +7,7 @@ export const topics = [
         aeroplane: 'mode of transportation',
         satellite: 'orbiting object for survelleince/communication',
         eagle: 'flying animal with sharp eyesight',
-        cloads: 'found floating in the sky, sometimes dark',
+        clouds: 'found floating in the sky, sometimes dark',
         asteroids: 'rocky objects smaller than planets',
         rocket: 'space vehicle',
         vulture: 'scavenger that flies',
@@ -20,7 +20,7 @@ export const topics = [
     {
       topicName: 'Sink, swim or float',
       wordsAndHints: {
-        titanic: 'famous ship that sank, more than a century ago after hitting an iceberg',
+        titanic: 'famous ship that sank, more than a century ago, after hitting an iceberg',
         submarine: 'watercraft designed to operate underwater',
         corals: 'these form reefs',
         glacier: 'large mass of ice',
