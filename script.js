@@ -24,8 +24,6 @@ let deckIndex = -1; //initialize initial state i.e. no deck selected until deck 
 let correctWord = ''; //initialize empty str
 
 let wordsArray = []; //initialize array to store words from selected topic
-// let originalWordsArray = [...wordsArray]; //copy of wordsArray using spread syntax - unmutable //for splice
-
 let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
 let usedIndex = [];
 let remainingWords = []; //initialize array to store and track UNused words
@@ -46,15 +44,13 @@ function getRandomUnusedWord() {
     do {
         randomIndex = Math.floor(Math.random() * wordsArray.length)
         randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
+                   
+    } while (usedWords.includes(randomWord));
 
-        if (!usedWords.includes(randomWord)) { 
-            
-            usedIndex.push(randomIndex); // index of the randomly picked word => used
-            usedWords.push(randomWord); //randomly picked word => used
-            remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
-        }
-        
-    } while (usedIndex.length < wordsArray.length && usedIndex.every(num => {num !== randomIndex}) );
+    usedIndex.push(randomIndex); // index of the randomly picked word => used
+    usedWords.push(randomWord); //randomly picked word => used
+    remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
+
 
     return randomWord // the unused random word to be used in goGamePage fn
 }
