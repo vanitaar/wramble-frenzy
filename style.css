@@ -149,7 +149,7 @@ header {
 }
 
 .results {
-    /* visibility: hidden; */
+    visibility: hidden;
     width:auto;
     font-weight: 600;
 }

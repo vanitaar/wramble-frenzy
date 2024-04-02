@@ -6,10 +6,14 @@ https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget
 https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/
 --> to read and figure out later
 
-//import AND export btw 2 js files to access variables
+https://youtu.be/ddVm53j80vc?si=MBAYS61_bta349Da
+--> to watch later; about dynamic module imports
+
+//import AND export btw 2 js files to access variables// importance of type = "module"
 https://javascript.info/import-export
 https://youtu.be/g7gmL4Fadno
 https://www.youtube.com/watch?v=NSnckA3LyGw
+https://youtu.be/s9kNndJLOjg?si=_O55r30f_TrVCojn
 
 
 //scrambling words
@@ -45,3 +49,11 @@ function durstenfeldShuffle(array) {
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 console.log(durstenfeldShuffle(arr));
+
+//focus vs blur
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_text_focus
+
+
+//toLocaleLowerCase
+https://medium.com/nerd-for-tech/basics-of-javascript-string-tolocalelowercase-method-552804b1f580
+https://www.techonthenet.com/js/string_tolocalelowercase.php
