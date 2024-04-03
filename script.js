@@ -23,7 +23,7 @@ const nextBtn = document.querySelector('.submit-word');
 let deckIndex = -1; //initialize initial state i.e. no deck selected until deck is clicked and goGamePage called
 let correctWord = ''; //initialize empty str
 
-let wordsArray = []; //initialize array to store words from selected topic
+// let wordsArray = []; //initialize array to store words from selected topic
 let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
 let usedIndex = [];
 let remainingWords = []; //initialize array to store and track UNused words
@@ -101,7 +101,7 @@ function goStartPage(){
 
 //click any of the deck --> game page
 Array.from(allDecks).forEach((deck) => {
-    deck.addEventListener('click', goGamePage)
+    deck.addEventListener('click', getShuffledArray)
 });
 
 //try another deck-->returns to start page
@@ -175,10 +175,57 @@ nextBtn.addEventListener('click', getInput);
 
 //!!! important each word appear once --> i.e. need to keep track of unused/used words
 
-
 //click swap --> to try another word and return to it later OR skip word means no point
 
 ///sudden thought what if jumbled letters end up being same as actual word?? --> need to add a check
 
 
+function getShuffledArray(event) {
+    deckIndex = Array.from(allDecks).indexOf(event.currentTarget); //specific topic //currentTarget will target parent always
+
+    let arrayToShuffle = []; //initialize empty array locally
+
+    topics.forEach(topic => {
+        if (topic.topicName === allDecks[deckIndex].children[0].innerText) { //condition: clicked deck name = topic name from wordList
+        arrayToShuffle = Object.keys(topic.wordsAndHints); //chache all words from chosen topic into an array --> to shuffle 
+        }
+    });   // console.log(arrayToShuffle); //array retrieved 
+
+   //using a shuffle algorithm (see references), to iterate through each word and randomly swap them around
+    for (let i = arrayToShuffle.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arrayToShuffle[i], arrayToShuffle[j]] = [arrayToShuffle[j], arrayToShuffle[i]];
+    };
+
+    return arrayToShuffle;
+    // wordsArray = Object.keys(topics[0].wordsAndHints);
+    // console.log(arrayToShuffle + ' original: ' + wordsArray); 
+}
+
+function getJumbledWords(array, relatedHintsObj) {
+    let jumbledWordWithHints = []; //initialize empty array locally --> cache jumbled word with their associated hints
+
+    while (jumbledWordWithHints.length !== array.length) { //keep pushing until get all the words in the array jumbled
+        array.forEach(word => {
+    
+            let letters = word.split(''); //convert the word to an array with all letters
+        
+            //using a shuffle algorithm (see references), to iterate through each lettter and randomly swap them around
+            for (let i = letters.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [letters[i], letters[j]] = [letters[j], letters[i]];
+            }
+
+            //using const because assigning only once thru each itearation within loop
+                const jumbledWord = letters.join(''); //join the jumbled letters into one word --> to be displayed w/o commas 
+                const hint = relatedHintsObj[word]
+                jumbledWordWithHints.push({ jumbledWord, hint}); //creationg an obj with two properties and pushing into the array
+               // console.log(jumbledWordArray); 
+            });
+    }
+
+        return jumbledWordWithHints;
+}
+
+// console.log(getJumbledWords(Object.keys(topics[0].wordsAndHints), topics[0].wordsAndHints));
 

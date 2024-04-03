@@ -15,18 +15,17 @@ https://youtu.be/g7gmL4Fadno
 https://www.youtube.com/watch?v=NSnckA3LyGw
 https://youtu.be/s9kNndJLOjg?si=_O55r30f_TrVCojn
 
-
 //scrambling words
 https://stackoverflow.com/questions/42334640/creating-a-javascript-string-word-scrambler#:~:text=First%20you%20get%20the%20text,back%20into%20the%20text%20area.
 https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
 https://stackabuse.com/shuffling-arrays-in-javascript/
 e.g.
 function fisherYatesShuffle(array) {
-    let currentIndex = array.length;
-    while (currentIndex !== 0) {
-        // Pick a remaining element
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+let currentIndex = array.length;
+while (currentIndex !== 0) {
+// Pick a remaining element
+let randomIndex = Math.floor(Math.random() \* currentIndex);
+currentIndex--;
 
         // And swap it with the current element
         let temporaryValue = array[currentIndex];
@@ -34,17 +33,20 @@ function fisherYatesShuffle(array) {
         array[randomIndex] = temporaryValue;
     }
     return array;
+
 }
 
 let arr = [1, 2, 3, 4, 5];
 console.log(fisherYatesShuffle(arr)); // [ 3, 1, 5, 4, 2 ]
------------------
+
+---
+
 function durstenfeldShuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
+for (let i = array.length - 1; i > 0; i--) {
+const j = Math.floor(Math.random() \* (i + 1));
+[array[i], array[j]] = [array[j], array[i]];
+}
+return array;
 }
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -52,7 +54,6 @@ console.log(durstenfeldShuffle(arr));
 
 //focus vs blur
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_text_focus
-
 
 //toLocaleLowerCase
 https://medium.com/nerd-for-tech/basics-of-javascript-string-tolocalelowercase-method-552804b1f580
@@ -66,8 +67,7 @@ https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Ar
 https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 https://stackoverflow.com/questions/47785624/filter-and-includes-to-filter-array-with-array
 
-
-//using spread syntax --> to ensure original array unchanged after splice 
+//using spread syntax --> to ensure original array unchanged after splice
 test code:
 let fruits = ['apple', 'banana', 'cherry', 'date'];
 fruits.splice(2, 1); //remove cherry
@@ -81,5 +81,11 @@ console.log('mutated ' + fruits2);
 console.log('remain unchanged ' + originalFruits2)
 // let originalWordsArray = [...wordsArray]; //copy of wordsArray using spread syntax - unmutable //for splice
 
-
 do while loop!!!!
+
+**\*\***\*\*\***\*\*** _RETHINKING REHASHING TO ORGANIZE CODE BETTER_ **\*\*\*\***\*\***\*\*\*\***
+
+1. get topic
+2. shuffled array of words -- topic specific
+3. jumbled letters of each word from shuffled array + associated hints to stay intact (to be displayed)
+4. iterate thru shuffled array

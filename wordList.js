@@ -32,24 +32,34 @@ export const topics = [
         driftwood: 'floating wooden debris/logs'
       }
     },
-    // Add more topics as needed
+
+    {
+      topicName: 'topic 3',
+      wordsAndHints: {
+        word1: 'hint1',
+        word2: 'hint2',
+        word3: 'hint3',
+      }
+    }
+
+    // Add more topics+words+hints as needed
   ];
   
 
-  // Randomly select a topic from the array
-  const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+  // // Randomly select a topic from the array
+  // const randomTopic = topics[Math.floor(Math.random() * topics.length)];
   
-  // Get an array of words from the selected topic
-  const wordsArray = Object.keys(randomTopic.wordsAndHints);
+  // // Get an array of words from the selected topic
+  // const wordsArray = Object.keys(randomTopic.wordsAndHints);
   
-  // Randomly select a word from the selected topic
-  const randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+  // // Randomly select a word from the selected topic
+  // const randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
   
-  // Get the hint for the selected word
-  const randomHint = randomTopic.wordsAndHints[randomWord];
+  // // Get the hint for the selected word
+  // const randomHint = randomTopic.wordsAndHints[randomWord];
   
-  // Display the selected topic, word, and hint
-  console.log('Topic:', randomTopic.topicName);
-  console.log('Word:', randomWord);
-  console.log('Hint:', randomHint);
+  // // Display the selected topic, word, and hint
+  // console.log('Topic:', randomTopic.topicName);
+  // console.log('Word:', randomWord);
+  // console.log('Hint:', randomHint);
   
