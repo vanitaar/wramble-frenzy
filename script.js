@@ -37,11 +37,7 @@ function getRandomUnusedWord() {
     //filter out used words (which are stored in the usedWords array)
     remainingWords = wordsArray.filter(word => !usedWords.includes(word)); //modify global!
     if (remainingWords.length === 0) {
-        results.style.visibility = 'visible';
-        displayedWord.style.display = 'none';
-        input.style.display = 'none';
-        showHintBtn.style.display = 'none';
-        nextBtn.style.display = 'none';
+        showResults();
         return null
     }
 
@@ -97,6 +93,7 @@ function goGamePage(event){
 function goStartPage(){
     gamePage.style.display = 'none';
     startPage.style.display = 'block';
+    hideResults();
     // Reset used and remaining words array and score!
     usedIndex = [];
     remainingWords = wordsArray;
@@ -108,13 +105,10 @@ const getInput = () => {
 
     let playerInput = input.value.toLocaleLowerCase();//obtaining player input //console.log(playerInput);
 
-    if (playerInput === '') {
-        input.placeholder = 'do not leave it blank';
-        input.style.border = '2px solid #ff006c';
-    } else if (playerInput === correctWord) {
+    if (playerInput === correctWord) {
         score++; //+1 for correct answer // console.log('answer correct' + 'score: ' + score)
 
-    } //player got it wrong --> no point added 
+    } //player got it wrong/blank --> no point added 
     
     input.value = ''; //clear input field
     correctWord = getRandomUnusedWord(); //generate next word
@@ -124,11 +118,28 @@ const getInput = () => {
     currentQn.innerText = usedWords.length;
     totalQn.innerText = remainingWords.length+usedWords.length;
 
-    // console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
-    // console.log(usedWords.length);
-    // console.log(remainingWords.length+usedWords.length) 
-    // console.log('score: ' + score)
+    console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
+    console.log(usedWords.length);
+    console.log(remainingWords.length+usedWords.length) 
+    console.log('score: ' + score)
 }
+
+function showResults() {
+    results.style.visibility = 'visible';
+    displayedWord.style.visibility = 'hidden';
+    input.style.visibility = 'hidden';
+    showHintBtn.style.visibility = 'hidden';
+    nextBtn.style.visibility = 'hidden';
+}
+
+function hideResults() {
+    results.style.visibility = 'hidden';
+    displayedWord.style.visibility = 'visible';
+    input.style.visibility = 'visible';
+    showHintBtn.style.visibility = 'visible';
+    nextBtn.style.visibility = 'visible';
+}
+
 
 
 //-----------------------------EVENT LISTENERS------------------------------------------------------
@@ -149,9 +160,5 @@ showHintBtn.addEventListener('click', () => {
 //input field --> get focus
 input.addEventListener('click', focus())
 
-//swap button
-// swapBtn.addEventListener('click')
-
 //next button
 nextBtn.addEventListener('click', getInput);
-
