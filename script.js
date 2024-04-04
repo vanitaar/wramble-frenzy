@@ -10,7 +10,6 @@ let deckIndex = -1; //initialize initial state i.e. no deck selected until deck 
 let correctWord = ''; //initialize empty str
 let wordsArray = []; //initialize array to store words from selected topic
 let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
-// let usedIndex = [];
 let remainingWords = []; //initialize array to store and track UNused words
 
 let score = 0; //initialize num value
@@ -51,7 +50,7 @@ function getRandomUnusedWord() {
         totalQn.innerText = wordsArray.length; //initial total qn no
                    
     } while (usedWords.includes(randomWord));
-    // usedIndex.push(randomIndex); // index of the randomly picked word => used
+
     usedWords.push(randomWord); //randomly picked word => used
     remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
     updateQnNo(); //qn no tracker
@@ -98,7 +97,6 @@ function goStartPage(){
     startPage.style.display = 'block';
     hideResults();
     // Reset used and remaining words array and score!
-    // usedIndex = [];
     remainingWords = [];
     usedWords = [];
     score = 0;
