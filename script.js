@@ -1,5 +1,5 @@
 //console.log('Wramble Frenzy') //smoke test
-// console.log(allDecks[0].children[0].innerText)
+//console.log(allDecks[0].children[0].innerText)
 
 //---------------------------CACHING all req'd elements-----------------------------------------
 
@@ -38,7 +38,7 @@ function getRandomUnusedWord() {
     remainingWords = wordsArray.filter(word => !usedWords.includes(word)); //modify global!
     if (remainingWords.length === 0) {
         showResults(); // console.log('All words used.')
-        return null
+        return ''
     }
 
     let randomIndex;
@@ -47,12 +47,16 @@ function getRandomUnusedWord() {
     do {
         randomIndex = Math.floor(Math.random() * wordsArray.length)
         randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
+        currentQn.innerText = 1;
+        totalQn.innerText = wordsArray.length;
                    
     } while (usedWords.includes(randomWord));
 
     usedIndex.push(randomIndex); // index of the randomly picked word => used
     usedWords.push(randomWord); //randomly picked word => used
     remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
+
+    updateQnNo();
 
     return randomWord // the unused random word to be used in goGamePage fn
 }
@@ -75,6 +79,7 @@ function goGamePage(event){
     gamePage.style.display = 'flex';
     gameTopicHeader.innerText = allDecks[deckIndex].children[0].innerText; //display apt topic
 
+
     let jumbledWord = ''; //initialize string locally
 
     topics.forEach(topic => {
@@ -88,9 +93,9 @@ function goGamePage(event){
         return correctWord = currentRandomWord;  //console.log('CORRECT: ' + correctWord)
         } 
     });
-    currentQn.innerText = usedWords.length;
-    totalQn.innerText = remainingWords.length + usedWords.length;
-
+    // currentQn.innerText = usedWords.length;
+    // totalQn.innerText = remainingWords.length + usedWords.length;
+    updateQnNo();
 
 }
 
@@ -100,8 +105,10 @@ function goStartPage(){
     hideResults();
     // Reset used and remaining words array and score!
     usedIndex = [];
-    remainingWords = wordsArray;
+    remainingWords = [];
+    usedWords = [];
     score = 0;
+    console.log('go start ', remainingWords.length)
 }
 
 const getInput = () => {
@@ -151,9 +158,16 @@ function nextQn() {
     displayedWord.innerText = jumbleLetters(correctWord); //display jumbled word 
     hint.innerText = topics[deckIndex].wordsAndHints[correctWord] //get associated hint
     hint.style.display = 'none'; //initially hint not displayed until clicked
+    // currentQn.innerText = usedWords.length;
+    // totalQn.innerText = remainingWords.length + usedWords.length;
+    updateQnNo();
+}
+
+function updateQnNo() {
     currentQn.innerText = usedWords.length;
     totalQn.innerText = remainingWords.length + usedWords.length;
 }
+
 
 
 //-----------------------------EVENT LISTENERS------------------------------------------------------
