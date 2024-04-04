@@ -37,7 +37,7 @@ function getRandomUnusedWord() {
     //filter out used words (which are stored in the usedWords array)
     remainingWords = wordsArray.filter(word => !usedWords.includes(word)); //modify global!
     if (remainingWords.length === 0) {
-        showResults();
+        showResults(); // console.log('All words used.')
         return null
     }
 
@@ -88,6 +88,10 @@ function goGamePage(event){
         return correctWord = currentRandomWord;  //console.log('CORRECT: ' + correctWord)
         } 
     });
+    currentQn.innerText = usedWords.length;
+    totalQn.innerText = remainingWords.length + usedWords.length;
+
+
 }
 
 function goStartPage(){
@@ -105,18 +109,17 @@ const getInput = () => {
 
     let playerInput = input.value.toLocaleLowerCase();//obtaining player input //console.log(playerInput);
 
-    if (playerInput === correctWord) {
+    if (playerInput === '') {
+        input.placeholder = 'do not leave it blank';
+        input.style.border = '2px solid #ff006c';
+    } else if (playerInput === correctWord) {
         score++; //+1 for correct answer // console.log('answer correct' + 'score: ' + score)
-
-    } //player got it wrong/blank --> no point added 
+        nextQn();
     
-    input.value = ''; //clear input field
-    correctWord = getRandomUnusedWord(); //generate next word
-    displayedWord.innerText = jumbleLetters(correctWord); //display jumbled word 
-    hint.innerText = topics[deckIndex].wordsAndHints[correctWord] //get associated hint
-    hint.style.display = 'none'; //initially hint not displayed until clicked
-    currentQn.innerText = usedWords.length;
-    totalQn.innerText = remainingWords.length+usedWords.length;
+    } else {
+        nextQn()
+    }//player got it wrong --> no point added 
+    
 
     console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
     console.log(usedWords.length);
@@ -140,6 +143,17 @@ function hideResults() {
     nextBtn.style.visibility = 'visible';
 }
 
+function nextQn() {
+    input.value = ''; //clear input field
+    input.placeholder = 'type your answer here';
+    input.style.border = 'none';
+    correctWord = getRandomUnusedWord(); //generate next word
+    displayedWord.innerText = jumbleLetters(correctWord); //display jumbled word 
+    hint.innerText = topics[deckIndex].wordsAndHints[correctWord] //get associated hint
+    hint.style.display = 'none'; //initially hint not displayed until clicked
+    currentQn.innerText = usedWords.length;
+    totalQn.innerText = remainingWords.length + usedWords.length;
+}
 
 
 //-----------------------------EVENT LISTENERS------------------------------------------------------
