@@ -37,20 +37,19 @@ const nextBtn = document.querySelector('.submit-word');
 function getRandomUnusedWord() {
     //filter out used words (which are stored in the usedWords array)
     remainingWords = wordsArray.filter(word => !usedWords.includes(word)); //modify global!
-    if (remainingWords.length === 0) {
-        showResults(); // console.log('All words used.')
-        return '';
-    }
+        if (remainingWords.length === 0) {
+            showResults(); // console.log('All words used.')
+            return '';
+        }
     let randomIndex;
     let randomWord;
-    do {
-        randomIndex = Math.floor(Math.random() * wordsArray.length)
-        randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
-        currentQn.innerText = 1; //initial current qn no 
-        totalQn.innerText = wordsArray.length; //initial total qn no
-                   
-    } while (usedWords.includes(randomWord));
-
+        do {
+            randomIndex = Math.floor(Math.random() * wordsArray.length)
+            randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
+            currentQn.innerText = 1; //initial current qn no 
+            totalQn.innerText = wordsArray.length; //initial total qn no
+                    
+        } while (usedWords.includes(randomWord));
     usedWords.push(randomWord); //randomly picked word => used
     remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
     updateQnNo(); //qn no tracker

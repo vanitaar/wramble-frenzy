@@ -34,11 +34,17 @@ export const topics = [
     },
 
     {
-      topicName: 'topic 3',
+      topicName: "What's that smell?",
       wordsAndHints: {
-        word1: 'hint1',
-        word2: 'hint2',
-        word3: 'hint3',
+        popcorn: 'usually enjoyed while watching movies',
+        candle: 'provides illumination and a pleasant scent for ambience',
+        vinegar: 'used in cooking or cleaning, has a sharp and acidic smell',
+        cologne: 'typically applied on body/clothes',
+        coffee: 'beverage made from beans',
+        chocolate: 'an indulgent treat, comes in a variety: e.g. milk/dark',
+        leather: 'material used in luxury goods',
+        flowers: 'the bloom of plants',
+        durian: 'known as the king of fruits, has a spiky outer layer'
       }
     }
 
