@@ -1,9 +1,21 @@
 //console.log('Wramble Frenzy') //smoke test
 //console.log(allDecks[0].children[0].innerText)
 
-//---------------------------CACHING all req'd elements-----------------------------------------
-
 import {topics} from './wordList.js'; //importing data to get the word list
+
+//---------------------------GLOBAL VARIABLES----------------------------------------------------
+
+//----------------------------------------state variables----------------------------------------
+let deckIndex = -1; //initialize initial state i.e. no deck selected until deck is clicked and goGamePage called
+let correctWord = ''; //initialize empty str
+let wordsArray = []; //initialize array to store words from selected topic
+let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
+// let usedIndex = [];
+let remainingWords = []; //initialize array to store and track UNused words
+
+let score = 0; //initialize num value
+
+//---------------------------caching all req'd elements-----------------------------------------
 
 const startPage = document.querySelector('.start-page'); //console.log(startPage) // console.log(startPage.style)
 const gamePage = document.querySelector('.game-container');
@@ -22,44 +34,28 @@ const returnToStartBtn = document.querySelector('.return-start-btn');
 const showHintBtn = document.querySelector('.show-hint-btn'); //console.log(showHintBtn)
 const nextBtn = document.querySelector('.submit-word');
 
-//global variables
-let deckIndex = -1; //initialize initial state i.e. no deck selected until deck is clicked and goGamePage called
-let correctWord = ''; //initialize empty str
-
-let wordsArray = []; //initialize array to store words from selected topic
-let usedWords = []; //initialize array to store and track used words (i.e. already randomly generated once)
-let usedIndex = [];
-let remainingWords = []; //initialize array to store and track UNused words
-
-let score = 0; //initialize num value
-
 //---------------------------------FUNCTIONS----------------------------------------------------
 function getRandomUnusedWord() {
     //filter out used words (which are stored in the usedWords array)
     remainingWords = wordsArray.filter(word => !usedWords.includes(word)); //modify global!
     if (remainingWords.length === 0) {
         showResults(); // console.log('All words used.')
-        return ''
+        return '';
     }
-
     let randomIndex;
     let randomWord;
-    
     do {
         randomIndex = Math.floor(Math.random() * wordsArray.length)
         randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
-        currentQn.innerText = 1;
-        totalQn.innerText = wordsArray.length;
+        currentQn.innerText = 1; //initial current qn no 
+        totalQn.innerText = wordsArray.length; //initial total qn no
                    
     } while (usedWords.includes(randomWord));
-
-    usedIndex.push(randomIndex); // index of the randomly picked word => used
+    // usedIndex.push(randomIndex); // index of the randomly picked word => used
     usedWords.push(randomWord); //randomly picked word => used
     remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
-
-    updateQnNo();
-
-    return randomWord // the unused random word to be used in goGamePage fn
+    updateQnNo(); //qn no tracker
+    return randomWord; // the unused random word to be used in goGamePage fn
 }
 
 function jumbleLetters(word) {
@@ -80,7 +76,6 @@ function goGamePage(event){
     gamePage.style.display = 'flex';
     gameTopicHeader.innerText = allDecks[deckIndex].children[0].innerText; //display apt topic
 
-
     let jumbledWord = ''; //initialize string locally
 
     topics.forEach(topic => {
@@ -94,8 +89,8 @@ function goGamePage(event){
         return correctWord = currentRandomWord;  //console.log('CORRECT: ' + correctWord)
         } 
     });
+       
     updateQnNo();
-
 }
 
 function goStartPage(){
@@ -103,14 +98,14 @@ function goStartPage(){
     startPage.style.display = 'block';
     hideResults();
     // Reset used and remaining words array and score!
-    usedIndex = [];
+    // usedIndex = [];
     remainingWords = [];
     usedWords = [];
     score = 0;
-    console.log('go start ', remainingWords.length)
+    // console.log('go start ', remainingWords.length)
 }
 
-function getInput() {
+function checkInput() {
     //correct or wrong --> move on to next --> try all words once
 
     let playerInput = input.value.toLocaleLowerCase();//obtaining player input //console.log(playerInput);
@@ -125,12 +120,11 @@ function getInput() {
     } else {
         nextQn() //player got it wrong --> no point added 
     }
-    
 
-    console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
-    console.log(usedWords.length);
-    console.log(remainingWords.length+usedWords.length) 
-    console.log('score: ' + score)
+    // console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
+    // console.log(usedWords.length);
+    // console.log(remainingWords.length+usedWords.length) 
+    // console.log('score: ' + score)
 }
 
 function showResults() {
@@ -141,9 +135,9 @@ function showResults() {
     nextBtn.style.visibility = 'hidden';
     // console.log(wordsArray.length)
     if (score > (wordsArray.length/2)) {
-        resultText.innerText = 'Congrats! You got ' + score + ' words right!'
+        resultText.innerText = 'Congrats! You got ' + score + ' words right!';
     } else {
-        resultText.innerText = 'Oh snap! You only got ' + score +  ' right!'
+        resultText.innerText = 'Oh snap! You only got ' + score +  ' right!';
     }
 }
 
@@ -161,7 +155,7 @@ function nextQn() {
     input.style.border = 'none';
     correctWord = getRandomUnusedWord(); //generate next word
     displayedWord.innerText = jumbleLetters(correctWord); //display jumbled word 
-    hint.innerText = topics[deckIndex].wordsAndHints[correctWord] //get associated hint
+    hint.innerText = topics[deckIndex].wordsAndHints[correctWord]; //get associated hint
     hint.style.display = 'none'; //initially hint not displayed until clicked
     updateQnNo();
 }
@@ -170,8 +164,6 @@ function updateQnNo() {
     currentQn.innerText = usedWords.length;
     totalQn.innerText = remainingWords.length + usedWords.length;
 }
-
-
 
 //-----------------------------EVENT LISTENERS------------------------------------------------------
 
@@ -192,4 +184,4 @@ showHintBtn.addEventListener('click', () => {
 input.addEventListener('click', focus())
 
 //next button
-nextBtn.addEventListener('click', getInput);
+nextBtn.addEventListener('click', checkInput);
