@@ -14,7 +14,8 @@ const hint = document.querySelector('.hint-text');
 const input = document.querySelector('input');
 const currentQn = document.querySelector('.current-qn');
 const totalQn = document.querySelector('.total-qn');
-const results = document.querySelector('.results')
+const results = document.querySelector('.results');
+const resultText = document.querySelector('.result-text');
 
 //buttons on gamePage
 const returnToStartBtn = document.querySelector('.return-start-btn');
@@ -93,8 +94,6 @@ function goGamePage(event){
         return correctWord = currentRandomWord;  //console.log('CORRECT: ' + correctWord)
         } 
     });
-    // currentQn.innerText = usedWords.length;
-    // totalQn.innerText = remainingWords.length + usedWords.length;
     updateQnNo();
 
 }
@@ -111,7 +110,7 @@ function goStartPage(){
     console.log('go start ', remainingWords.length)
 }
 
-const getInput = () => {
+function getInput() {
     //correct or wrong --> move on to next --> try all words once
 
     let playerInput = input.value.toLocaleLowerCase();//obtaining player input //console.log(playerInput);
@@ -124,8 +123,8 @@ const getInput = () => {
         nextQn();
     
     } else {
-        nextQn()
-    }//player got it wrong --> no point added 
+        nextQn() //player got it wrong --> no point added 
+    }
     
 
     console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
@@ -140,6 +139,12 @@ function showResults() {
     input.style.visibility = 'hidden';
     showHintBtn.style.visibility = 'hidden';
     nextBtn.style.visibility = 'hidden';
+    // console.log(wordsArray.length)
+    if (score > (wordsArray.length/2)) {
+        resultText.innerText = 'Congrats! You got ' + score + ' words right!'
+    } else {
+        resultText.innerText = 'Oh snap! You only got ' + score +  ' right!'
+    }
 }
 
 function hideResults() {
@@ -158,8 +163,6 @@ function nextQn() {
     displayedWord.innerText = jumbleLetters(correctWord); //display jumbled word 
     hint.innerText = topics[deckIndex].wordsAndHints[correctWord] //get associated hint
     hint.style.display = 'none'; //initially hint not displayed until clicked
-    // currentQn.innerText = usedWords.length;
-    // totalQn.innerText = remainingWords.length + usedWords.length;
     updateQnNo();
 }
 
