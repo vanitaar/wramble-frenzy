@@ -83,7 +83,7 @@ console.log('remain unchanged ' + originalFruits2)
 
 do while loop!!!!
 
-**\*\***\*\*\***\*\*** _RETHINKING REHASHING TO ORGANIZE CODE BETTER_ **\*\*\*\***\*\***\*\*\*\***
+_RETHINKING REHASHING TO ORGANIZE CODE BETTER_
 
 1. get topic
 2. shuffled array of words -- topic specific
