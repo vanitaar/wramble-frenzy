@@ -41,7 +41,7 @@ function getRandomUnusedWord() {
             showResults(); // console.log('All words used.')
             return '';
         }
-    let randomWord;
+    let randomWord; //assigned outside do..while to access outside the loop (see lines52-55)
         do { //initial state
             randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)]; //pick a random word from list //console.log(randomWord)
             currentQn.innerText = 1; //initial current qn no 

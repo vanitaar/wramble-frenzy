@@ -19,7 +19,7 @@ header {
        color: transparent; */
     text-shadow: 5px 5px 10px #ff006a9d;;
     background-color: rgb(93, 93, 90, 0.5);
-    padding: 0.5rem;
+    padding: 0.3rem;
     border: 5px dotted #f9ff21;
     /* border-image: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #ff00ff, #ff007f, #ff0026);
     border-image-slice: 1; */
@@ -40,14 +40,14 @@ header {
 .start-page p {
     padding-top: 1rem;
     color: #fff5f5;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 .wrapper {
     color: #fff5f5;
     margin: 0 auto;
     padding: 0rem 1rem 2rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     /* border: 1px solid #482ff7; */
     max-width: fit-content;
 }
@@ -61,7 +61,7 @@ header {
 .deck {
     text-align: center;
     box-shadow: 6px 6px 10px #5ae7fa;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border-radius: 10px;
     cursor: pointer;
     transition: box-shadow 0.3s ease; /* for smooth effect */
@@ -214,6 +214,7 @@ footer {
     align-items: center;
     flex-shrink: 0;
     margin-top: 2rem;
+    font-size: 1.3rem;
     /* 
     display: block;
     position: relative;
@@ -226,7 +227,7 @@ footer .quote {
     font-family: "Satisfy", cursive;
     font-weight: 500;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     text-decoration: underline #482ff7;
     text-decoration-thickness: 10px ;
     text-decoration-skip-ink: none;
