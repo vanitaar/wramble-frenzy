@@ -164,6 +164,12 @@ function updateQnNo() {
     totalQn.innerText = remainingWords.length + usedWords.length;
 }
 
+//to remove shake-animation class from input
+function removeShakeClass() {
+    input.classList.remove('shake-animation');
+    input.removeEventListener('animationend', removeShakeClass); // remove the event listener after executing once
+}
+
 //-----------------------------EVENT LISTENERS------------------------------------------------------
 
 //click any of the deck --> game page
@@ -181,12 +187,6 @@ showHintBtn.addEventListener('click', () => {
 
 //input field --> get focus
 input.addEventListener('click', focus())
-
-//to remove shake-animation class from input
-function removeShakeClass() {
-    input.classList.remove('shake-animation');
-    input.removeEventListener('animationend', removeShakeClass); // remove the event listener after executing once
-  }
 
 //next button
 nextBtn.addEventListener('click', checkInput);

@@ -17,7 +17,7 @@ header {
        background-clip: text;
        -webkit-background-clip: text;
        color: transparent; */
-    text-shadow: 5px 5px 10px #0c9673;
+    text-shadow: 5px 5px 10px #ff006a9d;;
     background-color: rgb(93, 93, 90, 0.5);
     padding: 0.5rem;
     border: 5px dotted #f9ff21;
@@ -46,7 +46,7 @@ header {
 .wrapper {
     color: #fff5f5;
     margin: 0 auto;
-    padding: 0.5rem 1rem 2rem;
+    padding: 0rem 1rem 2rem;
     font-size: 1.2rem;
     /* border: 1px solid #482ff7; */
     max-width: fit-content;
@@ -200,7 +200,7 @@ header {
     border: 1px solid whitesmoke;
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     cursor: pointer;
 } 
 
@@ -213,8 +213,8 @@ footer {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    margin-top: 5rem;
-    /* margin-top: 5rem;
+    margin-top: 2rem;
+    /* 
     display: block;
     position: relative;
     bottom: 0;
