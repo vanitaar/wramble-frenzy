@@ -66,6 +66,17 @@ function jumbleLetters(word) {
     return letters.join(''); //join the jumbled letters into one word --> to be displayed w/o commas
 }
 
+function tackleSelectedTopic(selectedTopic) {
+    if (selectedTopic) {
+        wordsArray = Object.keys(selectedTopic.wordsAndHints); //chache all words from chosen topic into an array
+        let currentRandomWord = getRandomUnusedWord(); //get random unused word and track used words
+        let jumbledWord = jumbleLetters(currentRandomWord); //use function to jumble letters
+        displayedWord.innerText = jumbledWord; //display jumbled word //console.log(jumbledWord)
+        hint.innerText = selectedTopic.wordsAndHints[currentRandomWord] //display associated hint
+        return correctWord = currentRandomWord;  //to reassign global var //console.log('CORRECT: ' + correctWord)
+    }
+}
+
 function goGamePage(event){
     // console.log(event);
     deckIndex = Array.from(allDecks).indexOf(event.currentTarget); //currentTarget will target parent always
@@ -73,19 +84,8 @@ function goGamePage(event){
     gamePage.style.display = 'flex';
     gameTopicHeader.innerText = allDecks[deckIndex].children[0].innerText; //display apt topic
 
-    let jumbledWord = ''; //initialize string locally
-
-    topics.forEach(topic => {
-        if (topic.topicName === allDecks[deckIndex].children[0].innerText) { 
-        wordsArray = Object.keys(topic.wordsAndHints); //chache all words from chosen topic into an array
-        let currentRandomWord = getRandomUnusedWord(); //get random unused word and track used words
-
-        jumbledWord = jumbleLetters(currentRandomWord); //use function to jumble letters
-        displayedWord.innerText = jumbledWord; //display jumbled word //console.log(jumbledWord)
-        hint.innerText = topic.wordsAndHints[currentRandomWord] //display associated hint
-        return correctWord = currentRandomWord;  //console.log('CORRECT: ' + correctWord)
-        } 
-    });
+    const selectedTopic = topics.find(topic => topic.topicName === allDecks[deckIndex].children[0].innerText);
+    tackleSelectedTopic(selectedTopic);
        
     updateQnNo();
 }
