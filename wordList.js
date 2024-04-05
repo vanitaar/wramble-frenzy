@@ -44,7 +44,8 @@ export const topics = [
         chocolate: 'an indulgent treat, comes in a variety: e.g. milk/dark',
         leather: 'material used in luxury goods',
         flowers: 'the bloom of plants',
-        durian: 'known as the king of fruits, has a spiky outer layer'
+        durian: 'known as the king of fruits, has a spiky outer layer',
+        barbecue: 'cooking method that imparts a smoky and savory aroma to foods'
       }
     }
 

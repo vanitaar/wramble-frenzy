@@ -41,15 +41,14 @@ function getRandomUnusedWord() {
             showResults(); // console.log('All words used.')
             return '';
         }
-    let randomIndex;
     let randomWord;
-        do {
-            randomIndex = Math.floor(Math.random() * wordsArray.length)
-            randomWord = wordsArray[randomIndex]; //pick a random word from list //console.log(randomWord)
+        do { //initial state
+            randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)]; //pick a random word from list //console.log(randomWord)
             currentQn.innerText = 1; //initial current qn no 
             totalQn.innerText = wordsArray.length; //initial total qn no
                     
         } while (usedWords.includes(randomWord));
+
     usedWords.push(randomWord); //randomly picked word => used
     remainingWords = remainingWords.filter(word => word !== randomWord); //remove the used word from remainingWords
     updateQnNo(); //qn no tracker
@@ -110,6 +109,9 @@ function checkInput() {
     if (playerInput === '') {
         input.placeholder = 'do not leave it blank';
         input.style.border = '2px solid #ff006c';
+        input.classList.add('shake-animation');
+        input.addEventListener('animationend', removeShakeClass);  //to remove shake-animation class after animation ends
+    
     } else if (playerInput === correctWord) {
         score++; //+1 for correct answer // console.log('answer correct' + 'score: ' + score)
         nextQn();
@@ -179,6 +181,12 @@ showHintBtn.addEventListener('click', () => {
 
 //input field --> get focus
 input.addEventListener('click', focus())
+
+//to remove shake-animation class from input
+function removeShakeClass() {
+    input.classList.remove('shake-animation');
+    input.removeEventListener('animationend', removeShakeClass); // remove the event listener after executing once
+  }
 
 //next button
 nextBtn.addEventListener('click', checkInput);
