@@ -12,9 +12,17 @@ body {
 
 header {
     color: #e2ded3;
+       /* Rainbow text effect */
+       /* background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #ff00ff, #ff007f, #ff0026);
+       background-clip: text;
+       -webkit-background-clip: text;
+       color: transparent; */
+    text-shadow: 5px 5px 10px #0c9673;
     background-color: rgb(93, 93, 90, 0.5);
     padding: 0.5rem;
     border: 5px dotted #f9ff21;
+    /* border-image: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #ff00ff, #ff007f, #ff0026);
+    border-image-slice: 1; */
     font-family: "Tilt Prism", sans-serif;
     font-size: 2rem;
     }
@@ -57,15 +65,15 @@ header {
     border-radius: 10px;
     cursor: pointer;
     transition: box-shadow 0.3s ease; /* for smooth effect */
-    transition: text-underline 1s ease;
+    /* transition: text-underline 1s ease; */
+    transition: text-shadow 0.3s ease;
 }
 
 /* Hover effect */
 .deck:hover {
   box-shadow: 8px 8px 12px #482ff7;
-  text-decoration-line: underline;
-  text-decoration-color: #5ae7fa;
-  text-decoration-thickness: 2px;
+  /* text-decoration: underline #5ae7fa 2px; */
+  text-shadow: 2px 2px 4px #ff006c;
 }
 
 .game-container {
@@ -149,8 +157,6 @@ header {
     color: #ececec;
     border: 2px solid #f0ff24;
   }
-
-
 
 .hint-text {
     font-size: 1.1rem;
