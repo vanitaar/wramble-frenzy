@@ -32,6 +32,7 @@ The game also features hints for each word, allowing players to get assistance w
 - [Vanilla Javascript](/script.js)
 - [HTML](/index.html)
 - [CSS](/style.css)
+  
   <img src="/images/techStack.png" alt="Tech Stack Utilized" width="100" height="100">
 
 ## Into the Future: What's Next for Wramble Frenzy? 🚀
