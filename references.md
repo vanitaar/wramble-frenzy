@@ -115,3 +115,16 @@ include the link to your deployed game
 Images of your actual game / gifs with User story / how to play
 List of the technologies used, e.g., JavaScript, HTML, CSS, etc.
 Next Steps: Planned future enhancements (icebox items)
+
+---
+
+FEEDBACK FROM PRESENTATION
+-key idea on accounting for accessibility
+-- buttons, form inputs --> can tab --> players can rely on keyboard
+-- using form input attributes e.g. label (is preferred for accessibility) vs placeholder
+
+- some articles i have found to read
+  -- https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role
+  -- https://www.w3schools.com/html/html_accessibility.asp
+  -- https://www.w3schools.com/tags/tag_fieldset.asp
+  -- https://coyleandrew.medium.com/alternatives-to-placeholder-text-13f430abc56f
