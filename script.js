@@ -1,6 +1,3 @@
-//console.log('Wramble Frenzy') //smoke test
-//console.log(allDecks[0].children[0].innerText)
-
 import {topics} from './wordList.js'; //importing data to get the word list
 
 //---------------------------GLOBAL VARIABLES----------------------------------------------------
@@ -16,11 +13,11 @@ let score = 0; //initialize num value
 
 //---------------------------caching all req'd elements-----------------------------------------
 
-const startPage = document.querySelector('.start-page'); //console.log(startPage) // console.log(startPage.style)
+const startPage = document.querySelector('.start-page'); 
 const gamePage = document.querySelector('.game-container');
-const allDecks = document.getElementsByClassName('deck');  //console.log(allDecks) --> [topic1, topic2,...]
-const gameTopicHeader = document.querySelector('h2'); // console.log(gameTopicHeader)
-const displayedWord = document.querySelector('.word');//console.log(displayedWord)
+const allDecks = document.getElementsByClassName('deck'); 
+const gameTopicHeader = document.querySelector('h2'); 
+const displayedWord = document.querySelector('.word');
 const hint = document.querySelector('.hint-text');
 const input = document.querySelector('input');
 const currentQn = document.querySelector('.current-qn');
@@ -30,7 +27,7 @@ const resultText = document.querySelector('.result-text');
 
 //buttons on gamePage
 const returnToStartBtn = document.querySelector('.return-start-btn');
-const showHintBtn = document.querySelector('.show-hint-btn'); //console.log(showHintBtn)
+const showHintBtn = document.querySelector('.show-hint-btn');
 const nextBtn = document.querySelector('.submit-word');
 
 //---------------------------------FUNCTIONS----------------------------------------------------
@@ -78,7 +75,6 @@ function tackleSelectedTopic(selectedTopic) {
 }
 
 function goGamePage(event){
-    // console.log(event);
     deckIndex = Array.from(allDecks).indexOf(event.currentTarget); //currentTarget will target parent always
     startPage.style.display = 'none';
     gamePage.style.display = 'flex';
@@ -120,10 +116,6 @@ function checkInput() {
         nextQn() //player got it wrong --> no point added 
     }
 
-    // console.log('Used Words:', usedWords, 'Remaining Words:', remainingWords);
-    // console.log(usedWords.length);
-    // console.log(remainingWords.length+usedWords.length) 
-    // console.log('score: ' + score)
 }
 
 function showResults() {
@@ -132,7 +124,7 @@ function showResults() {
     input.style.visibility = 'hidden';
     showHintBtn.style.visibility = 'hidden';
     nextBtn.style.visibility = 'hidden';
-    // console.log(wordsArray.length)
+
     if (score > (wordsArray.length/2)) {
         resultText.innerText = 'Congrats! You got ' + score + ' words right!';
     } else {
